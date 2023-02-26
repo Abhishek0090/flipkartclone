@@ -1,7 +1,9 @@
 import React from 'react'
 
 
-import { AppBar, Toolbar, styled, Box, Typography } from '@mui/material';
+import { AppBar, Toolbar, styled, Box, Typography, TextField } from '@mui/material';
+import Search from './Search';
+import CustomButtons from './CustomButtons';
 
 const StyledHeader = styled(AppBar)`
     background  : #2874f0;
@@ -10,8 +12,7 @@ const StyledHeader = styled(AppBar)`
 
 const LogoComponent = styled(Box)`
     margin-left : 12%; 
-    line-height : 0;
-    margin-bottom:10px;
+    line-height : 0; 
 
 `;
 
@@ -27,7 +28,10 @@ const PlusImage = styled('img')({
     width: 10
 });
 
+const CustomButtonCss = styled(Box)`
 
+margin  : 0 5% 0 auto;
+`;
 
 const Header = () => {
 
@@ -37,7 +41,7 @@ const Header = () => {
 
     return (
         <StyledHeader >
-            <Toolbar>
+            <Toolbar style={{ minHeight: 55 }}>
                 <LogoComponent >
                     <img src={logoUrl} alt="logo" style={{ width: 75 }} />
                     <Box>
@@ -51,7 +55,10 @@ const Header = () => {
                     </Box>
 
                 </LogoComponent>
-
+                <Search />
+                <CustomButtonCss>
+                    <CustomButtons />
+                </CustomButtonCss>
             </Toolbar>
         </StyledHeader>
     )
