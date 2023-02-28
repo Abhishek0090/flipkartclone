@@ -10,6 +10,13 @@ const NavOptions = styled(Box)`
 
 const Container = styled(Box)`
     padding : 12px 8px;
+    text-align : center;
+`;
+
+const Text = styled(Typography)`
+    font-size : 14px;
+    font-weight  : 600; 
+    font-family  : inherit;
 `;
 
 
@@ -20,7 +27,7 @@ const Navbar = () => {
                 navData?.map((data) => (
                     <Container>
                         <img src={data.url} alt="product" width='64' />
-                        <Typography>{data.text}</Typography>
+                        <Text>{data.text}</Text>
                     </Container>
                 )
                 )
