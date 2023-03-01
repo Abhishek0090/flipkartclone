@@ -4,7 +4,7 @@ import Banner from './Banner'
 import Navbar from './Navbar'
 
 const Component = styled(Box)`
-    padding : 9px;
+    padding : 9px 5px;
     background : #e4e7ed;    
 `;
 
