@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "@mui/material/Button";
 import ClearIcon from "@mui/icons-material/Clear";
 import TextField from "@mui/material/TextField";
@@ -8,110 +8,118 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Box, Typography, styled } from "@mui/material";
+import { authenticateSignup } from "../../../Service/api";
+import { DataContext } from "../../../context/DataProvider";
 
 const Container = styled(Box)`
-  height: 82vh;
-  maxwidth: 500px;
-`;
+    height: 82vh;
+    maxwidth: 500px;
+  `;
 
 const Image = styled(Box)`
-  background: #2874f0
-    url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png)
-    center 85% no-repeat;
+    background: #2874f0
+      url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png)
+      center 85% no-repeat;
 
-  width: 30%;
-  padding: 30px;
-  & > p,
-  & > h5 {
-    color: #fff;
-    font-weight: 600;
-  }
-`;
+    width: 30%;
+    padding: 30px;
+    & > p,
+    & > h5 {
+      color: #fff;
+      font-weight: 600;
+    }
+  `;
 
 const Wrapper = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  padding: 25px 35px;
-  flex: 1;
-  & > div,
-  & > p,
-  & > button {
-    margin-top: 10px;
-  }
-`;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 35px;
+    flex: 1;
+    & > div,
+    & > p,
+    & > button {
+      margin-top: 10px;
+    }
+  `;
 
 const LoginButton = styled(Button)`
-  background: #fb641b;
-  text-transform: none;
-  color: #fff;
-  height: 48px;
-  border-radius: 2px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
-`;
+    background: #fb641b;
+    text-transform: none;
+    color: #fff;
+    height: 48px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+  `;
 
 const SignUpButton = styled(Button)`
-  background: #fb641b;
-  text-transform: none;
-  color: #fff;
-  height: 48px;
-  border-radius: 2px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
-`;
+    background: #fb641b;
+    text-transform: none;
+    color: #fff;
+    height: 48px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+  `;
 
 const LoginExistButton = styled(Button)`
-  background: #fff;
-  text-transform: none;
-  color: #2874f0;
-  height: 48px;
-  border-radius: 2px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
-`;
+    background: #fff;
+    text-transform: none;
+    color: #2874f0;
+    height: 48px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+  `;
 
 const RequestOTP = styled(Button)`
-  background: #fff;
-  text-transform: none;
-  color: #2874f0;
-  height: 48px;
-  border-radius: 2px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
-`;
+    background: #fff;
+    text-transform: none;
+    color: #2874f0;
+    height: 48px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+  `;
 
 const PolicyText = styled(Typography)`
-  font-size: 12px;
-  cursor: pointer;
-`;
+    font-size: 12px;
+    cursor: pointer;
+  `;
 
 const SignUpText = styled(Typography)`
-  font-size: 12px;
-  font-weight: 600;
-  color: #2874f0;
-  text-align: center;
-  cursor: pointer;
-`;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2874f0;
+    text-align: center;
+    cursor: pointer;
+  `;
+ 
+  const accountInitialValues = {
+    login: {
+      view: "login",
+      heading: "Login",
+      subHeading: "Get access to your Orders, Wishlist and Recommendations",
+    },
+    signup: {
+      view: "signup",
+      heading: "Looks like you're new here!",
+      subHeading: "Sign up with your mobile number to get started",
+    },
+  };
 
-const accountInitialValues = {
-  login: {
-    view: "login",
-    heading: "Login",
-    subHeading: "Get access to your Orders, Wishlist and Recommendations",
-  },
-  signup: {
-    view: "signup",
-    heading: "Looks like you're new here!",
-    subHeading: "Sign up with your mobile number to get started",
-  },
-};
-
-const signUpInitialValues = {
-  firstname: "",
-  lastname: "",
-  username: "",
-  email: "",
-  password: "",
-  phone: "",
-};
-
+  const signUpInitialValues = {
+    firstname: "",
+    lastname: "",
+    username: "",
+    email: "",
+    password: "",
+    phone: "",
+  };
+  
 const LoginDialog = ({ open, setOpen }) => {
+
+  const {userAccount , setUserAccount} = useContext(DataContext);
+
+
+
+
   const [account, setToggleAccount] = useState(accountInitialValues.login);
 
   const [signup, setSignup] = useState(signUpInitialValues);
@@ -131,8 +139,12 @@ const LoginDialog = ({ open, setOpen }) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
   };
 
-  const signUpUser = ()=>{
-    
+  const signUpUser = async () => {
+    let response = await authenticateSignup(signup);
+    if (!response) return; 
+    handleClose();
+
+    setUserAccount(signup.firstname)
   }
 
   return (
@@ -254,7 +266,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     variant="standard"
                     onChange={(e) => handleChange(e)}
                   />
-                  <SignUpButton onClick={()=> signUpUser()}>Continue</SignUpButton>
+                  <SignUpButton onClick={() => signUpUser()}>Continue</SignUpButton>
                   <LoginExistButton
                     onClick={() => setToggleAccount(accountInitialValues.login)}
                   >
