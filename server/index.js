@@ -6,6 +6,8 @@ import router from './routes/routes.js';
 import cors from "cors";
 import bodyParser from 'body-parser';
 
+import cookieParser from 'cookie-parser';
+
 
 const app = express();
 const PORT = 8000;
@@ -26,6 +28,12 @@ app.use(express.json());
 
 // app.use(bodyParser.json({extended : true}))
 // app.use(bodyParser.urlencoded({extended : true})) 
+
+
+//cookies
+
+app.use(cookieParser());
+
 
 //routes setup
 

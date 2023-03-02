@@ -8,7 +8,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Box, Typography, styled } from "@mui/material";
-import { authenticateSignup } from "../../../Service/api";
+import { authenticateLogin, authenticateSignup } from "../../../Service/api";
 import { DataContext } from "../../../context/DataProvider";
 
 const Container = styled(Box)`
@@ -83,69 +83,109 @@ const PolicyText = styled(Typography)`
     cursor: pointer;
   `;
 
-const SignUpText = styled(Typography)`
+const CreateAccount = styled(Typography)`
     font-size: 12px;
     font-weight: 600;
     color: #2874f0;
     text-align: center;
     cursor: pointer;
   `;
- 
-  const accountInitialValues = {
-    login: {
-      view: "login",
-      heading: "Login",
-      subHeading: "Get access to your Orders, Wishlist and Recommendations",
-    },
-    signup: {
-      view: "signup",
-      heading: "Looks like you're new here!",
-      subHeading: "Sign up with your mobile number to get started",
-    },
-  };
 
-  const signUpInitialValues = {
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-    password: "",
-    phone: "",
-  };
-  
+
+const Error = styled(Typography)`
+    font-size : 10px;
+    color : #ff6161;
+    line-height  : 0;
+    margin-top : 12px;
+    font-weight : 600;
+  `;
+
+const accountInitialValues = {
+  login: {
+    view: "login",
+    heading: "Login",
+    subHeading: "Get access to your Orders, Wishlist and Recommendations",
+  },
+  signup: {
+    view: "signup",
+    heading: "Looks like you're new here!",
+    subHeading: "Sign up with your mobile number to get started",
+  },
+};
+
+const signUpInitialValues = {
+  firstname: "",
+  lastname: "",
+  username: "",
+  email: "",
+  password: "",
+  phone: "",
+};
+
+const loginInitialValues = {
+  email: '',
+  password: ''
+}
+
 const LoginDialog = ({ open, setOpen }) => {
 
-  const {userAccount , setUserAccount} = useContext(DataContext);
+  const { userAccount, setUserAccount } = useContext(DataContext);
 
-
+  const [login, setLogin] = useState(loginInitialValues);
 
 
   const [account, setToggleAccount] = useState(accountInitialValues.login);
 
   const [signup, setSignup] = useState(signUpInitialValues);
 
+  const [error, setError] = useState(false);
+
   const handleClose = () => {
     setOpen(false);
     setToggleAccount(accountInitialValues.login);
+    setError(false);
   };
 
   const toggleSignUp = () => {
     setToggleAccount(accountInitialValues.signup);
   };
 
-  const handleChange = (e) => {
+  const onInputChange = (e) => {
     e.preventDefault();
 
     setSignup({ ...signup, [e.target.name]: e.target.value });
   };
 
+
   const signUpUser = async () => {
     let response = await authenticateSignup(signup);
-    if (!response) return; 
+    if (!response) return;
     handleClose();
 
     setUserAccount(signup.firstname)
   }
+
+  const onValueChange = (e) => {
+    e.preventDefault();
+
+    setLogin({ ...login, [e.target.name]: e.target.value })
+
+  }
+
+
+  const loginUser = async () => {
+
+    let response = await authenticateLogin(login);
+    console.log(response);
+
+    if (response.status === 200) {
+      setUserAccount(response.data.data.firstname);
+      handleClose();
+    } else {
+      setError(true)
+    }
+  }
+
 
   return (
     <div>
@@ -164,37 +204,38 @@ const LoginDialog = ({ open, setOpen }) => {
                   <TextField
                     autoFocus
                     margin="dense"
-                    id="name"
+                    id="login"
                     name="email"
                     label="Enter Email/Mobile Number"
                     type="email"
                     fullWidth
                     variant="standard"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => onValueChange(e)}
                   />
+                  {error && <Error>Please enter valid email or password</Error>}
                   <TextField
                     autoFocus
                     margin="dense"
-                    id="name"
+                    id="password"
                     name="password"
                     label="Enter Password"
                     type="password"
                     fullWidth
                     variant="standard"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => onValueChange(e)}
                   />
                   <PolicyText>
-                    By continuing, you agree to Flipkart's{" "}
+                    By continuing, you agree to Flipkart's
                     <span style={{ color: "#2874f0" }}>
                       Terms of Use and Privacy Policy
                     </span>
                   </PolicyText>
-                  <LoginButton>Login</LoginButton>
+                  <LoginButton onClick={loginUser}>Login</LoginButton>
                   <Typography style={{ textAlign: "center" }}>OR</Typography>
                   <RequestOTP>Request OTP</RequestOTP>
-                  <SignUpText onClick={toggleSignUp}>
+                  <CreateAccount onClick={toggleSignUp}>
                     New to Flipkart? Create an account
-                  </SignUpText>
+                  </CreateAccount>
                 </Wrapper>
               </>
             ) : (
@@ -209,7 +250,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     type="name"
                     fullWidth
                     variant="standard"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => onInputChange(e)}
                   />
                   <TextField
                     autoFocus
@@ -220,7 +261,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     type="name"
                     fullWidth
                     variant="standard"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => onInputChange(e)}
                   />
                   <TextField
                     autoFocus
@@ -231,7 +272,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     type="name"
                     fullWidth
                     variant="standard"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => onInputChange(e)}
                   />
                   <TextField
                     autoFocus
@@ -242,7 +283,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     type="email"
                     fullWidth
                     variant="standard"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => onInputChange(e)}
                   />
                   <TextField
                     autoFocus
@@ -253,7 +294,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     type="password"
                     fullWidth
                     variant="standard"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => onInputChange(e)}
                   />
                   <TextField
                     autoFocus
@@ -264,7 +305,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     type="text"
                     fullWidth
                     variant="standard"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => onInputChange(e)}
                   />
                   <SignUpButton onClick={() => signUpUser()}>Continue</SignUpButton>
                   <LoginExistButton
