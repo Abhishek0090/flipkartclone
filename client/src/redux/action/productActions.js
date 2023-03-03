@@ -9,7 +9,7 @@ export const getProducts = () => async (dispatch) => { // use second function as
     try {
 
         const { data } = await axios.get(`${URL}/products`);
-
+        console.log(data);
         dispatch({ type: actionTypes.GET_PRODUCTS_SUCCESS, payload: data })
 
     } catch (error) {

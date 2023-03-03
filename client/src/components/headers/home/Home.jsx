@@ -5,6 +5,7 @@ import Navbar from './Navbar'
 import { getProducts } from '../../../redux/action/productActions';
 
 import { useDispatch, useSelector } from 'react-redux';
+import Slide from './Slide';
 
 const Component = styled(Box)`
     padding : 9px 5px;
@@ -19,7 +20,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        dispatch(getProducts);
+        dispatch(getProducts());
     }, [dispatch]);
 
 
@@ -28,6 +29,7 @@ const Home = () => {
             <Navbar />
             <Component>
                 <Banner />
+                <Slide products={products} />
             </Component>
         </>
     )

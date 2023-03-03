@@ -25,7 +25,7 @@ const Navbar = () => {
         <NavOptions> 
             {
                 navData?.map((data) => (
-                    <Container>
+                    <Container key={data.id}>
                         <img src={data.url} alt="product" width='64' />
                         <Text>{data.text}</Text>
                     </Container>

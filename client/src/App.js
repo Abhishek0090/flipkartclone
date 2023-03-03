@@ -4,7 +4,7 @@ import Header from './components/headers/Header';
 import Home from './components/headers/home/Home';
 import { Box, styled } from '@mui/material';
 
-const HomeCss = styled(Box)`
+const Component = styled(Box)`
 margin-top : 54px;
 `
   ;
@@ -14,9 +14,9 @@ function App() {
     <div>
 
       <Header />
-      <HomeCss>
+      <Component>
         <Home />
-      </HomeCss>
+      </Component>
     </div>
   );
 }
