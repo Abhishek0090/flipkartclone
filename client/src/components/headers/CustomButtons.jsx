@@ -12,6 +12,7 @@ import Profile from './Profile';
 const Wrapper = styled(Box)`
     display : flex;
     margin : 0 3% 0 auto;
+    margin-left: 20px;
     align-items : center;
 
     & > button , & > p , & > div {
@@ -21,7 +22,7 @@ const Wrapper = styled(Box)`
     }
 `;
 
-const LoginButton = styled(Button)`
+const LoginButton = styled(Button)` 
     background : white;
     color : #2874f0;
     text-transform  : none;
@@ -36,11 +37,11 @@ const LoginButton = styled(Button)`
 const CustomButtons = () => {
     const [open, setOpen] = useState(false);
 
-    const { userAccount , setUserAccount} = useContext(DataContext);
+    const { userAccount, setUserAccount } = useContext(DataContext);
     return (
         <Wrapper>
             {
-                userAccount ? <Profile userAccount = {userAccount} setUserAccount={setUserAccount}/>
+                userAccount ? <Profile userAccount={userAccount} setUserAccount={setUserAccount} />
                     : <LoginButton variant="contained" onClick={() => setOpen
                         (true
                         )}>Login</LoginButton>
