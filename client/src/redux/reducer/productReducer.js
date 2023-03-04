@@ -14,10 +14,13 @@ export const getProductsReducer = (state = { products: [] }, action) => {
 };
 
 
-export const getProductDetailsReducer = (state = {
-    products: {}
-    , loading  : false
-}, action) => {
+const initialState = {
+    products: {},
+    loading: false 
+  };
+
+
+export const getProductDetailsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionTypes.GET_PRODUCT_DETAILS_REQUEST:

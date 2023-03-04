@@ -35,13 +35,10 @@ const DetailView = () => {
 
 
     
-    const productsData = useSelector((state) => state.getProductDetails) || {};
+    const { loading, product } = useSelector(state => state.getProductDetails)  ;
     
     const dispatch = useDispatch();
-
-    console.log(productsData);
-
-    const { loading, product } = productsData;
+ 
 
     console.log(product);
 
