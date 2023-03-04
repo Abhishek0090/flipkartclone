@@ -6,18 +6,24 @@ const Component = styled(Box)`
   display: flex;
 `;
 
-const LeftComponent = styled(Box)`
-  width: 82%;
-`;
+const LeftComponent = styled(Box)(({ theme }) => ({
+  width: '83%',
+  [theme.breakpoints.down('md')]: {
+    width: '100%'
+  }
+}))
 
-const RightComponent = styled(Box)`
-  background: #fff;
-  padding: 5px;
-  margin-top: 10px;
-  margin-left: 5px;
-  width: 17%;
-  text-align : center;
-`;
+const RightComponent = styled(Box)(({ theme }) => ({
+  background: '#fff',
+  padding: '6px',
+  marginTop: '10px',
+  marginLeft: '5px',
+  width: '17%',
+  textAlign: 'center',
+  [theme.breakpoints.down('md')]: {
+    display: 'none'
+  }
+}));
 
 const MidSlide = ({ products, title, timer }) => {
   const adUrl =
@@ -28,7 +34,7 @@ const MidSlide = ({ products, title, timer }) => {
         <Slide products={products} title={title} timer={timer} />
       </LeftComponent>
       <RightComponent>
-        <img src={adUrl} alt="ad url" style={{width : 227}} />
+        <img src={adUrl} alt="ad url" style={{ width: 217, height : 350 }} />
       </RightComponent>
     </Component>
   );

@@ -40,7 +40,7 @@ export const navData = [
 export const bannerData = [
   {
     id: 1,
-    url: "https://rukminim1.flixcart.com/fk-p-flap/844/140/image/1a326d2f48aaedf0.jpg?q=50",
+    url: "https://rukminim1.flixcart.com/flap/3376/560/image/d117a62eb5fbb8e1.jpg?q=50",
   },
   {
     id: 2,

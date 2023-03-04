@@ -13,6 +13,8 @@ const StyledHeader = styled(AppBar)`
 const LogoComponent = styled(Box)`
     margin-left : 12%; 
     line-height : 0; 
+    color: #FFFFFF;
+    text-decoration: none;
 
 `;
 
@@ -37,7 +39,6 @@ const Header = () => {
 
     const logoUrl = "https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png";
     const subUrl = "https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/plus_aef861.png"
-
 
     return (
         <StyledHeader >
