@@ -1,13 +1,13 @@
 import { Box, styled } from '@mui/material'
 import React, { useEffect } from 'react'
-import Banner from './home/Banner'
-import Navbar from './home/Navbar'
-import { getProducts } from '../redux/action/productActions';
+import Banner from './Banner'
+import Navbar from './Navbar'
+import { getProducts } from '../../redux/action/productActions';
 
 import { useDispatch, useSelector } from 'react-redux';
-import Slide from './home/Slide';
-import MidSlide from './home/MidSlide';
-import MidSection from '../headers/MidSection';
+import Slide from './Slide';
+import MidSlide from './MidSlide';
+import MidSection from './MidSection';
 
 const Component = styled(Box)`
     padding : 9px 5px;

@@ -8,8 +8,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Box, Typography, styled } from "@mui/material";
-import { authenticateLogin, authenticateSignup } from "../../../Service/api";
-import { DataContext } from "../../../context/DataProvider";
+import { authenticateLogin, authenticateSignup } from "../../Service/api";
+import { DataContext } from "../../context/DataProvider";
 
 const Container = styled(Box)`
     height: 82vh;

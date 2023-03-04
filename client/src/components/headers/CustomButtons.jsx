@@ -4,7 +4,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 //login components
-import LoginDialog from './login/LoginDialog';
+import LoginDialog from '../login/LoginDialog';
 import { DataContext, DataProvider } from '../../context/DataProvider';
 import Profile from './Profile';
 

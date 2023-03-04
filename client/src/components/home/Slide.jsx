@@ -3,6 +3,7 @@ import "react-multi-carousel/lib/styles.css";
 import React from 'react'
 import { Box, Button, Divider, Typography, styled } from "@mui/material";
 import Countdown from 'react-countdown';
+import { Link } from "react-router-dom";
 
 
 const responsive = {
@@ -77,7 +78,7 @@ const Text = styled(Typography)`
     margin-top : 5px;
 `;
 
-const Slide = ({ products, title , timer}) => {
+const Slide = ({ products, title, timer }) => {
 
 
     const timerUrl = "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
@@ -106,12 +107,14 @@ const Slide = ({ products, title , timer}) => {
                 itemClass="carousel-item-padding-40-px" >
                 {
                     products?.map((data) => (
-                        <ImgCard>
-                            <Image src={data.detailUrl} alt="" key={data.id} />
-                            <Text style={{ fontWeight: 600, color: '#212121' }}>{data.title.shortTitle}</Text>
-                            <Text style={{ color: '#388e3c' }}>{data.discount}</Text>
-                            <Text style={{ color: 'grey' }}>{data.tagline}</Text>
-                        </ImgCard>
+                        <Link to={`product/${data.id}`} style={{textDecoration : 'none'}}>
+                            <ImgCard>
+                                <Image src={data.detailUrl} alt="" key={data.id} />
+                                <Text style={{ fontWeight: 600, color: '#212121' }}>{data.title.shortTitle}</Text>
+                                <Text style={{ color: '#388e3c' }}>{data.discount}</Text>
+                                <Text style={{ color: 'grey' }}>{data.tagline}</Text>
+                            </ImgCard>
+                        </Link>
 
                     )
                     )
