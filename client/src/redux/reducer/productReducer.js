@@ -13,11 +13,10 @@ export const getProductsReducer = (state = { products: [] }, action) => {
     }
 };
 
- 
 
 export const getProductDetailsReducer = (state = {
-    product: {},
-    loading: false
+    products: {}
+    , loading  : false
 }, action) => {
 
     switch (action.type) {

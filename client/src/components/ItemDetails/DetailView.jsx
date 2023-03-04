@@ -34,13 +34,17 @@ const DetailView = () => {
     const { id } = useParams();
 
 
+    
+    const productsData = useSelector((state) => state.getProductDetails) || {};
+    
     const dispatch = useDispatch();
 
-    const productDetails = useSelector((state) => state.getProductDetails);
+    console.log(productsData);
 
-    const { loading, product } = productDetails;
+    const { loading, product } = productsData;
 
-    console.log(productDetails.product);
+    console.log(product);
+
 
     useEffect(() => {
 
@@ -48,10 +52,7 @@ const DetailView = () => {
 
             dispatch(getProductDetails(id));
 
-        // console.log(product)
-
-
-    }, [dispatch, product, id]);
+    }, [dispatch, product, id, loading]);
 
 
     return (

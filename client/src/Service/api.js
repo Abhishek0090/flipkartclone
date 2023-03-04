@@ -19,3 +19,11 @@ export const authenticateLogin = async (data) => {
         return error.response;
     }
 } 
+
+export const getProductDetails = async (id) => {
+    try {
+        return await axios.get(`${URL}/product/${id}`);
+    } catch (error) {
+        console.log('Error while getting product by id response', error);
+    }
+}
