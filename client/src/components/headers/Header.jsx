@@ -1,7 +1,7 @@
-import React from 'react'
+import { useState } from 'react';
 
-
-import { AppBar, Toolbar, styled, Box, Typography, TextField } from '@mui/material';
+import { AppBar, Toolbar, Box, Typography, IconButton, Drawer, List, styled } from '@mui/material';
+import { Menu } from '@mui/icons-material';
 import Search from './Search';
 import CustomButtons from './CustomButtons';
 import { Link } from 'react-router-dom';
@@ -11,13 +11,18 @@ const StyledHeader = styled(AppBar)`
     height : 55px
 `;
 
-const LogoComponent = styled(Link)`
-    margin-left : 12%; 
-    line-height : 0; 
-    color: #FFFFFF;
-    text-decoration: none;
 
-`;
+
+const LogoComponent = styled(Link)(({ theme }) => ({
+    marginLeft : '12%', 
+    lineHeight : '0',
+    color: '#FFFFFF',
+    textDecoration: 'none',
+    [theme.breakpoints.down('sm')]: {
+        marginLeft : '1%', 
+    } 
+    
+})); 
 
 const SubHeading = styled(Typography)`
     font-size : 11px;
@@ -31,19 +36,58 @@ const PlusImage = styled('img')({
     width: 10
 });
 
-const CustomButtonCss = styled(Box)`
+const MenuButton = styled(IconButton)(({ theme }) => ({
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+        display: 'block'
+    }
+}));
 
-margin  : 0 5% 0 auto;
-`;
+const CustomButtonWrapper = styled('span')(({ theme }) => ({ 
+    margin: '0 5% 0 auto', 
+    [theme.breakpoints.down('sm')]: {
+        display: 'none'
+    }
+}));
 
 const Header = () => {
 
     const logoUrl = "https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png";
     const subUrl = "https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/plus_aef861.png"
+    const [open, setOpen] = useState(false);
+
+    const handleClose = () => {
+        setOpen(false);
+    }
+
+    const handleOpen = () => {
+        setOpen(true);
+    }
+
+    const list = () => (
+        <Box style={{ width: 250 }} onClick={handleClose}>
+            <List>
+                <listItem button>
+                    <CustomButtons />
+                </listItem>
+            </List>
+        </Box>
+    );
 
     return (
         <StyledHeader >
             <Toolbar style={{ minHeight: 55 }}>
+                    <MenuButton
+                            color="inherit"
+                            onClick={handleOpen}
+                        >
+                            <Menu />
+                    </MenuButton>
+
+                <Drawer open={open} onClose={handleClose}>
+                    {list()}
+                </Drawer>
+
                 <LogoComponent to='/'>
                     <img src={logoUrl} alt="logo" style={{ width: 75 }} />
                     <Box>
@@ -58,9 +102,9 @@ const Header = () => {
 
                 </LogoComponent>
                 <Search />
-                <CustomButtonCss>
+                <CustomButtonWrapper>
                     <CustomButtons />
-                </CustomButtonCss>
+                </CustomButtonWrapper>
             </Toolbar>
         </StyledHeader>
     )

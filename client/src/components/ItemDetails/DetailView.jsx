@@ -6,6 +6,7 @@ import { Box, Grid, Typography, styled } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
 import ActionItem from './ActionItem';
 import axios from 'axios';
+import ProductDetail from './ProductDetail';
 
 const Component = styled(Box)`
     margin-top: 55px;
@@ -93,7 +94,7 @@ const [product, setProduct] = useState(null)
                         <span style={{ color: '#878787' }}><strike>₹{product.price.mrp}</strike></span>&nbsp;&nbsp;&nbsp;
                         <span style={{ color: '#388E3C' }}>{product.price.discount} off</span>
                     </Typography>
-                    {/* <ProductDetail product={product} /> */}
+                    <ProductDetail product={product} />
                 </RightContainer>
             </Container>
         }   
