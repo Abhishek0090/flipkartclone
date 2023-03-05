@@ -20,7 +20,7 @@ export const authenticateLogin = async (data) => {
     }
 } 
 
-export const getProductDetails = async (id) => {
+export const getProductById = async (id) => {
     try {
         return await axios.get(`${URL}/product/${id}`);
     } catch (error) {

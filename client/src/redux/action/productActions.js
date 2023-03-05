@@ -28,6 +28,6 @@ export const getProductDetails = (id) => async (dispatch) => { // use second fun
         dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_SUCCESS, payload: data })
 
     } catch (error) {
-        dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_FAIL, payload: error.message })
+        dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_FAIL, payload: error.response })
     }
 }

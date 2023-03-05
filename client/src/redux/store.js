@@ -8,7 +8,7 @@ import { getProductDetailsReducer, getProductsReducer } from "./reducer/productR
 
 const reducer = combineReducers({
   getProducts: getProductsReducer,
-  getProductsDetails: getProductDetailsReducer
+  getProductDetails: getProductDetailsReducer
 
 });
 

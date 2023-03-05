@@ -4,6 +4,8 @@ import React from 'react'
 import { Box, Button, Divider, Typography, styled } from "@mui/material";
 import Countdown from 'react-countdown';
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 
 const responsive = {
@@ -78,8 +80,12 @@ const Text = styled(Typography)`
     margin-top : 5px;
 `;
 
+
+
 const Slide = ({ products, title, timer }) => {
 
+
+   
 
     const timerUrl = "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
 
@@ -88,6 +94,8 @@ const Slide = ({ products, title, timer }) => {
         return <Box variant="span">{hours} : {minutes} : {seconds} Left</Box>
     };
 
+  
+    
     return (
         <Component>
             <Deal>
