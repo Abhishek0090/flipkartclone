@@ -10,9 +10,10 @@ import Profile from './Profile';
 
 
 const Wrapper = styled(Box)(({ theme }) => ({
-    margin: '0 3% 0 auto',
+    margin: '0 3% 0 12px',
     display: 'flex',
-    alignItems:'center',
+    alignItems : 'center',
+
     '& > *': {
         marginRight: '40px !important',
         textDecoration: 'none',
@@ -33,7 +34,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
 }));
 
 const Container = styled(Box)(({theme})=>({
-    display: 'block',
+    display: 'flex',
     [theme.breakpoints.down('md')]: {
        
         display: 'none' 
