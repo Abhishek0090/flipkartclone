@@ -71,7 +71,7 @@ const Search = () => {
               product.title.longTitle.toLowerCase().includes(text.toLowerCase())
             )
             .map((product) => (
-              <ListItem>
+              <ListItem key={product.id}>
                 <Link
                   to={`/product/${product.id}`}
                   style={{ textDecoration: "none", color: "inherit" }}

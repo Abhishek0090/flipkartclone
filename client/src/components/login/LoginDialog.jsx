@@ -176,7 +176,7 @@ const LoginDialog = ({ open, setOpen }) => {
   const loginUser = async () => {
 
     let response = await authenticateLogin(login);
-    console.log(response);
+    // console.log(response);
 
     if (response.status === 200) {
       setUserAccount(response.data.data.firstname);

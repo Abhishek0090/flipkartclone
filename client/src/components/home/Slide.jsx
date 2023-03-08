@@ -114,10 +114,10 @@ const Slide = ({ products, title, timer }) => {
                 centerMode={true} containerClass="carousel-container" dotListClass="custom-dot-list-style"
                 itemClass="carousel-item-padding-40-px" >
                 {
-                    products?.map((data) => (
+                    products?.map((data,key) => (
                         <Link to={`product/${data.id}`} style={{textDecoration : 'none'}}>
-                            <ImgCard>
-                                <Image src={data.detailUrl} alt="" key={data.id} />
+                            <ImgCard key={data.id}>
+                                <Image src={data.detailUrl} alt=""/>
                                 <Text style={{ fontWeight: 600, color: '#212121' }}>{data.title.shortTitle}</Text>
                                 <Text style={{ color: '#388e3c' }}>{data.discount}</Text>
                                 <Text style={{ color: 'grey' }}>{data.tagline}</Text>
