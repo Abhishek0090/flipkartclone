@@ -5,11 +5,16 @@ import { Box, Typography, styled } from '@mui/material';
 const Header = styled(Box)`
     padding: 15px 24px;
     background: #fff;
-    borderBottom: 1px solid #f0f0f0;
+    borderBottom: 1px solid #f0f0f0; 
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 20%);
 `;
 
 const Heading = styled(Typography)`
     color: #878787;
+    display: block;
+    text-transform: uppercase; 
+    font-size  :15px;
+    font-weight: 600;   
 `;
 
 const Container = styled(Box)`
@@ -62,7 +67,7 @@ const TotalView = ({ cartItems }) => {
     }
 
     return (
-        <Box>  {/* className={classes.component}> */}
+        <Box >  {/* className={classes.component}> */}
             <Header>
                 <Heading>PRICE DETAILS</Heading>
             </Header>
@@ -70,6 +75,7 @@ const TotalView = ({ cartItems }) => {
                 <Typography>Price ({cartItems?.length} item)
                     <Price component="span">₹{price}</Price>
                 </Typography>
+                
                 <Typography>Discount
                     <Price component="span">-₹{discount}</Price>
                 </Typography>

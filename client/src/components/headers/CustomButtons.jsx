@@ -1,4 +1,4 @@
-import { Box, Button, Typography, styled } from '@mui/material'
+import { Box, Button, Typography, styled , Badge } from '@mui/material'
 import React, { useContext, useState } from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
@@ -8,6 +8,7 @@ import LoginDialog from '../login/LoginDialog';
 import { DataContext, DataProvider } from '../../context/DataProvider';
 import Profile from './Profile';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const Wrapper = styled(Box)(({ theme }) => ({
@@ -34,14 +35,13 @@ const Wrapper = styled(Box)(({ theme }) => ({
     }
 }));
 
-const Container = styled(Box)(({theme})=>({
+const Container = styled(Link)(({ theme }) => ({
     display: 'flex',
-    [theme.breakpoints.down('md')]: {
-       
-        display: 'none' 
+    [theme.breakpoints.down('sm')]: {
+        display: 'block'
     }
-    
 }));
+
 const LoginButton = styled(Button)(({ theme }) => ({
     color: '#2874f0',
     background: '#FFFFFF',
@@ -64,6 +64,14 @@ const CustomButtons = () => {
     const [open, setOpen] = useState(false);
 
     const { userAccount, setUserAccount } = useContext(DataContext);
+
+    const cartDetails = useSelector(state => state.cart);
+    const { cartItems } = cartDetails;
+
+    const openDialog = () => {
+        setOpen(true);
+    }
+
     return (
         <Wrapper>
             {
@@ -83,13 +91,11 @@ const CustomButtons = () => {
             </Typography>
 
 
-            <Container>
-                <ShoppingCartIcon />
-                <Link to='/cart' style={{textDecoration : 'none',color : '#fff'}}>
-                <Typography>
-                    Cart
-                </Typography>
-                </Link>
+            <Container to='/cart'>
+                <Badge badgeContent={cartItems?.length} color="secondary">
+                    <ShoppingCartIcon />
+                </Badge>
+                <Typography style={{ marginLeft: 10 }}>Cart</Typography>
             </Container>
 
             <LoginDialog open={open} setOpen={setOpen} />

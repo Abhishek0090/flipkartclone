@@ -54,7 +54,10 @@ const Cart = () => {
 
   const dispatch = useDispatch();
 
-  
+
+  const removeItemFromCart = (id) => {
+    dispatch(removeFromCart(id));
+}
 
   return (
     <>
@@ -65,7 +68,7 @@ const Cart = () => {
                     <Typography style={{fontWeight: 600, fontSize: 18}}>My Cart ({cartItems?.length})</Typography>
                 </Header>
                     {   cartItems?.map(item => (
-                            <CartItem item={item}  />
+                            <CartItem item={item}  removeItemFromCart={removeItemFromCart} />
                         ))
                     }
                 <BottomWrapper>
