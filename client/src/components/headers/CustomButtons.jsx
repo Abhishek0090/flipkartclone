@@ -7,6 +7,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LoginDialog from '../login/LoginDialog';
 import { DataContext, DataProvider } from '../../context/DataProvider';
 import Profile from './Profile';
+import { Link } from 'react-router-dom';
 
 
 const Wrapper = styled(Box)(({ theme }) => ({
@@ -84,9 +85,11 @@ const CustomButtons = () => {
 
             <Container>
                 <ShoppingCartIcon />
+                <Link to='/cart' style={{textDecoration : 'none',color : '#fff'}}>
                 <Typography>
                     Cart
                 </Typography>
+                </Link>
             </Container>
 
             <LoginDialog open={open} setOpen={setOpen} />

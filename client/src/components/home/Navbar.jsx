@@ -1,12 +1,14 @@
 import { Box, styled, Typography } from '@mui/material'
 import React from 'react'
 import { navData } from '../../constants/data'
+import { Link } from 'react-router-dom';
 
 const Component = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     margin: '55px 130px 0 130px !important',
     overflowX: 'overlay',
+    backgroundColor : '#fff',
     [theme.breakpoints.down('lg')]: {
         margin: '0px !important'
     }
@@ -26,7 +28,7 @@ const Text = styled(Typography)`
 
 const Navbar = () => {
     return (
-        <Component > 
+        <Component >  
             {
                 navData?.map((data) => (
                     <Container key={data.id}>
@@ -35,7 +37,7 @@ const Navbar = () => {
                     </Container>
                 )
                 )
-            }
+            } 
         </Component >
     )
 }
