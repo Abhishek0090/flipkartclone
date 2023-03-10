@@ -2,14 +2,15 @@ import { Box, Button, styled } from "@mui/material";
 import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FlashOn from "@mui/icons-material/FlashOn";
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
+import { payUsingPaytm } from "../../Service/api";
 
-import { payUsingPaytm } from '../../Service/api'; 
+import { post } from "../../utils/paytm";
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/action/cartActions";
 
 const LeftContainer = styled(Box)(({ theme }) => ({
@@ -30,12 +31,9 @@ const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: "2px",
   height: "50px",
   color: "#fff",
-
 }));
 
 const ActionItem = ({ product }) => {
-
-
   const navigate = useNavigate();
   const { id } = product;
 
@@ -43,20 +41,22 @@ const ActionItem = ({ product }) => {
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
- 
     dispatch(addToCart(id, quantity));
-    navigate('/cart');
-  }
+    navigate("/cart");
+  };
 
   const buyNow = async () => {
-    let response = await payUsingPaytm({ amount: 500, email: 'codeforinterview01@gmail.com' });
+    let response = await payUsingPaytm({
+      amount: 500,
+      email: "codeforinterview01@gmail.com",
+    });
     // let response = await payUsingPaytm({ amount: 500, email: 'palabhishek411@gmail.com' });
     var information = {
-      action: 'https://securegw-stage.paytm.in/order/process',
-      params: response
-    }
-    // post(information);
-  }
+      action: "https://securegw-stage.paytm.in/order/process",
+      params: response,
+    };
+    post(information);
+  };
 
   return (
     <LeftContainer>
