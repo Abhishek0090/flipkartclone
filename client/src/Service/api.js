@@ -27,3 +27,13 @@ export const getProductById = async (id) => {
         console.log('Error while getting product by id response', error);
     }
 }
+
+
+export  const payUsingPaytm = async (data) => {
+    try {
+        let response = await axios.post(`${URL}/payment`, data);
+        return response.data;
+    } catch (error) {
+        console.log('Error', error);
+    }
+}

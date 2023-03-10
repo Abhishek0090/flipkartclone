@@ -1,11 +1,14 @@
 import { Box, Button, styled } from "@mui/material";
 import React from "react";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"; 
-import FlashOn from "@mui/icons-material/FlashOn"; 
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FlashOn from "@mui/icons-material/FlashOn";
 import { useState } from 'react';
-  
-import { useNavigate } from 'react-router-dom'; 
- 
+
+import { useNavigate } from 'react-router-dom';
+
+
+import { payUsingPaytm } from '../../Service/api'; 
+
 import { useDispatch } from 'react-redux';
 import { addToCart } from "../../redux/action/cartActions";
 
@@ -35,20 +38,25 @@ const ActionItem = ({ product }) => {
 
   const navigate = useNavigate();
   const { id } = product;
-      
+
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
-
-    
+ 
     dispatch(addToCart(id, quantity));
     navigate('/cart');
-}
+  }
 
-  const buyNow = () => {
-
-  };
+  const buyNow = async () => {
+    let response = await payUsingPaytm({ amount: 500, email: 'codeforinterview01@gmail.com' });
+    // let response = await payUsingPaytm({ amount: 500, email: 'palabhishek411@gmail.com' });
+    var information = {
+      action: 'https://securegw-stage.paytm.in/order/process',
+      params: response
+    }
+    // post(information);
+  }
 
   return (
     <LeftContainer>
