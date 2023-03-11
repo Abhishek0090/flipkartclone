@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 import { getProducts , getProductById} from "../controllers/product-controllers.js";
 import { userSignup, userLogin } from "../controllers/user-controllers.js";
-import { addPaymentGateway, paymentResponse } from '../controller/payment-controller.js';
+import { addPaymentGateway, paymentResponse } from '../controllers/payment-controller.js';
 
 const router = express.Router();
 
