@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as actionTypes from '../constants/productConstants';
 
-const URL = "http://localhost:8000/api";
+const URL = "http://localhost:8000";
 
 
 
