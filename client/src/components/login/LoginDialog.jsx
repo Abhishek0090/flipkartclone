@@ -211,6 +211,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     fullWidth
                     variant="standard"
                     onChange={(e) => onValueChange(e)}
+                    autoComplete='off'
                   />
                   {error && <Error>Please enter valid email or password</Error>}
                   <TextField
@@ -223,6 +224,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     fullWidth
                     variant="standard"
                     onChange={(e) => onValueChange(e)}
+                    autoComplete='off'
                   />
                   <PolicyText>
                     By continuing, you agree to Flipkart's
@@ -251,6 +253,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     fullWidth
                     variant="standard"
                     onChange={(e) => onInputChange(e)}
+                    autoComplete='off'
                   />
                   <TextField
                     autoFocus
@@ -262,6 +265,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     fullWidth
                     variant="standard"
                     onChange={(e) => onInputChange(e)}
+                    autoComplete='off'
                   />
                   <TextField
                     autoFocus
@@ -273,6 +277,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     fullWidth
                     variant="standard"
                     onChange={(e) => onInputChange(e)}
+                    autoComplete='off'
                   />
                   <TextField
                     autoFocus
@@ -284,6 +289,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     fullWidth
                     variant="standard"
                     onChange={(e) => onInputChange(e)}
+                    autoComplete='off'
                   />
                   <TextField
                     autoFocus
@@ -295,6 +301,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     fullWidth
                     variant="standard"
                     onChange={(e) => onInputChange(e)}
+                    autoComplete='off'
                   />
                   <TextField
                     autoFocus
@@ -306,6 +313,7 @@ const LoginDialog = ({ open, setOpen }) => {
                     fullWidth
                     variant="standard"
                     onChange={(e) => onInputChange(e)}
+                    autoComplete='off'
                   />
                   <SignUpButton onClick={() => signUpUser()}>Continue</SignUpButton>
                   <LoginExistButton
