@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { Box, Typography, Button, Grid, styled } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/action/cartActions';
@@ -68,7 +68,7 @@ const Cart = () => {
 
 
 const buyNow = async () => {
-  let response = await payUsingPaytm({ amount: 500, email: 'kunaltyagi@gmail.com'});
+  let response = await payUsingPaytm({ amount: 500, email: 'palabhishek411@gmail.com'});
   var information = {
       action: 'https://securegw-stage.paytm.in/order/process',
       params: response    
@@ -88,9 +88,12 @@ const buyNow = async () => {
                             <CartItem item={item}  removeItemFromCart={removeItemFromCart} />
                         ))
                     }
+                  <Link to={`/order`}>
                 <BottomWrapper>
-                    <StyledButton onClick={() => buyNow()}  variant="contained">Place Order</StyledButton>
+
+                    <StyledButton  variant="contained">Place Order</StyledButton>
                 </BottomWrapper>
+                    </Link>
             </LeftComponent>
             <Grid item lg={3} md={3} sm={12} xs={12}>
                 <TotalView cartItems={cartItems} />
